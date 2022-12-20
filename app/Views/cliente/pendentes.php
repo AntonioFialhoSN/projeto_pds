@@ -20,7 +20,8 @@ if (isset($this->dados['servicos'])) {
 $servicos = [];
 }
 
-$table = 3;
+
+$table = 8;
 ?>
 <?php 
 //include "app/Views/menu_footer/menu.php"; 
@@ -39,17 +40,17 @@ use app\Lib\Mask;
   <div class="content-wrapper">
     <a href="<?php echo URL . 'home/onShow' ?>" class="menu-link" title="Home"><i class="mdi mdi-home"></i></a>
     >
-    <a href="<?php echo URL . 'servico_adm/index' ?>" class="menu-link"><span>LISTAGEM DE HORÁRIOS</span></a>
+    <a href="<?php echo URL . 'pendentes/index' ?>" class="menu-link"><span>HORÁRIOS PENDENTES</span></a>
 
     <br>
     <br>
     <div class="">
       <div class="card-header">
-        <strong>HORÁRIOS</strong>
+        <strong>HORÁRIOS PENDENTES</strong>
       </div>
       <br>
       <div class="text-center">
-        <a href="<?php echo URL . 'servico_adm/onShow' ?>" class="btn btn-outline-success btn-lg">CADASTRAR</a>
+        <a href="<?php echo URL . 'pendentes/onShow' ?>" class="btn btn-outline-success btn-lg">AGENDAR HORÁRIO</a>
       </div>
       <br>
       <table id="example<?= $table; ?>" class="display" style="width:100%">
@@ -84,7 +85,7 @@ use app\Lib\Mask;
               ?>
               <tr>
                 <td style='font-size:28px'>
-                  <a href="<?php echo URL . 'servico_adm/onEdit?id=' . $lista_em_abertas_1->id; ?>" title="Editar" data-toggle="popover" data-trigger="hover" data-content="Some content">
+                  <a href="<?php echo URL . 'pendentes/onEdit?id=' . $lista_em_abertas_1->id; ?>" title="Editar" data-toggle="popover" data-trigger="hover" data-content="Some content">
                     <i style="color:#0090e7;" class='mdi mdi-table-edit'></i>
                   </a>
                   <!-- &nbsp;&nbsp;&nbsp;
@@ -94,8 +95,8 @@ use app\Lib\Mask;
                 </td>
                 <td><?= $lista_em_abertas_1->nome_user; ?></td>
                 <td><?= $str_serv ?></td>
-                <td><?= $lista_em_abertas_1->email ?></td>
-                <td><?= Mask::setmask($lista_em_abertas_1->telefone, '(##) #####-####'); ?></td>
+                <td><a style="font-size: 26px;" href="mailto:<?= $lista_em_abertas_1->email ?>" title="Email"><i class="mdi mdi-email"></i></a></td>
+                <td><a target="_blanck" href="<?php echo "https://api.whatsapp.com/send?phone=55".$lista_em_abertas_1->telefone;?>"><i style="font-size: 26px;"  class="mdi mdi-whatsapp"></i><?= Mask::setmask($lista_em_abertas_1->telefone, '(##) #####-####'); ?></a></td>
                 <td><?= $lista_em_abertas_1->dia.' - '.$lista_em_abertas_1->horario  ?></td>
               </tr>
           <?php  }
